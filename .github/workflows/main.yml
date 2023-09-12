@@ -1,8 +1,14 @@
-  name: Github Action for LaTeX
-  on: [push]
-  uses: xu-cheng/latex-action@v3
-    with:
-      root_file: |
-        card.tex
-  extra_fonts: |
-      ./fonts/*.otf
+name: Build LaTeX document
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: card.tex
+          extra_fonts: |
+            ./fonts/*.otf
